@@ -1,130 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test av facebook login, lenkede sider og instagram info.</title>
-    <style>
-        .even {
-            background: darkgoldenrod;
-            color: white;
-        }
-        .odd {
-            background: darkred;
-            color: white;
-        }
-    </style>
+<title>Facebook Login</title>
+<meta charset="UTF-8">
 </head>
 <body>
-    <h2>Objective</h2>
-    <h4>Test your facebook login, grap your facebook-linked page and then grab the instagram information</h4>
-    <h3>Step 0: facebook login</h3>
-    <fb:login-button scope="email, public_profile,pages_show_list,instagram_basic,pages_read_engagement,read_insights_pages_manage_engagement,ads_read,instagram_manage_insights" onlogin="handlefbLogin();"></fb:login-button>
+<script>
+  function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+    console.log('statusChangeCallback');
+    console.log(response);                   // The current login status of the person.
+    if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+      testAPI();  
+    } else {                                 // Not logged into your webpage or we are unable to tell.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this webpage.';
+    }
+  }
 
-    <h3 class="">Step 1: Get my facebook account</h3>
-    <pre class="even" id="MyFacebookAccount"></pre>
-    <h3 class="">Step 2: Get my facebook-related account</h3>
-    <pre class="odd" id="MyFacebookAccountInfo"></pre>
-    <h3 class="">Step 3: Get my instagram business account</h3>
-    <pre class="even" id="MyFacebookBizInstaAccountInfo"></pre>
-    <h3 class="">Step 4: Get Insta profile account</h3>
-    <pre class="odd" id="MyInstaAccountInfo"></pre>
-    <h3 class="">Step 5: Get Insta profile insights</h3>
-    <pre class="even" id="MyInstaAccountInsights"></pre>
-    <h3 class="">Step 6: Get Insta posts and info</h3>
-    <pre class="odd" id="MyInstaAccountPosts"></pre>
-    <h3 class="">Step 7: Get Facebook page insights</h3> 
-    <pre class="even" id="MyFacebookPageInsights"></pre> 
+  function checkLoginState() {               // Called when a person is finished with the Login Button.
+    FB.getLoginStatus(function(response) {   // See the onlogin handler
+      statusChangeCallback(response);
+    });
+  }
 
-    <script type="module">
-        // just print json into dom nicely
-        const printData = (domId, dataObject) => {
-          document.getElementById(domId).innerHTML = JSON.stringify(
-            dataObject,
-            null,
-            "\n\t"
-          );
-        };
-    
-        // initialize data----->
-        import {
-            initializeFlow,
-            doLogin,
-            getAppToken,
-            getMyfbAccPage,
-            getMyfbAccInfo,
-            getMyFbInstaBusinessAcc,
-            getMyInstagramAccMediaStats,
-            getMyInstagramAccInfo,
-            getMyInstagramAccInsight,
-        } from "js/script.js";
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '{460854655226830}',
+      cookie     : true,                     // Enable cookies to allow the server to access the session.
+      xfbml      : true,                     // Parse social plugins on this webpage.
+      version    : '{v10.0}'           // Use this Graph API version for this call.
+    });
 
-        const appId = "460854655226830";
-        const clientToken = "50879b42065f1e286af9cbcac8c23df1";
-        const loginSuccessFunc = async (responseItem) => {
-            const appToken = await getAppToken(
-            responseItem.userIdInfo,
-            responseItem.accessTokenInfo
-            );
-        
-        // 1. get my facebook account
-        const fbInfo = await getMyfbAccInfo(
-          responseItem.userIdInfo,
-          responseItem.accessTokenInfo
-        );
-        printData("MyFacebookAccount", fbInfo);
+    FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
+      statusChangeCallback(response);        // Returns the login status.
+    });
+  };
+ 
+  function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    });
+  }
 
-        // 2. get my facebook related accounts
-        const fbAccInfo = await getMyfbAccPage(
-          responseItem.userIdInfo,
-          responseItem.accessTokenInfo
-        );
-        printData("MyFacebookAccountInfo", fbAccInfo.data);
+</script>
 
-        // here i choose the first one - you can do more
-        const fbPageAccId = fbAccInfo.data[0].id;
-        const fbPageAccesstoken = fbAccInfo.data[0].access_token;
 
-        // 3. get my facebook related accounts
-        const fbInstaInfo = await getMyFbInstaBusinessAcc(
-          fbPageAccId,
-          fbPageAccesstoken
-        );
-        printData("MyFacebookBizInstaAccountInfo", fbInstaInfo);
+<!-- The JS SDK Login Button -->
 
-        // 4. get my instagram profile info
-        const instaProfileInfo = await getMyInstagramAccInfo(
-          fbInstaInfo.instagram_business_account.id,
-          fbPageAccesstoken
-        );
-        printData("MyInstaAccountInfo", instaProfileInfo);
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
 
-        // 5. get my instagram profile inisghts
-        const instaProfileInsight = await getMyInstagramAccInsight(
-          fbInstaInfo.instagram_business_account.id,
-          fbPageAccesstoken
-        );
-        printData("MyInstaAccountInsights", instaProfileInsight);
+<div id="status">
+</div>
 
-        // 6. get my instagram profile posts
-        const instaProfilePosts = await getMyInstagramAccMediaStats(
-          fbInstaInfo.instagram_business_account.id,
-          fbPageAccesstoken
-        );
-        printData("MyInstaAccountPosts", instaProfilePosts);
-      };
-
-      const loginFailFunc = async (responseItem) => {};
-      window.flowFacebookData = {
-        appId: appId,
-        clientToken: clientToken,
-        loginSuccessFunc: loginSuccessFunc,
-        loginFailFunc: loginFailFunc,
-      };
-      initializeFlow();
-      window.handlefbLogin = doLogin;
-      // <-----initialize data
-    </script>
+<!-- Load the JS SDK asynchronously -->
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
 </body>
 </html>
