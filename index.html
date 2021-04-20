@@ -48,8 +48,7 @@
 
 
 <!-- The JS SDK Login Button -->
-<h3>Log into your Facebook Account</h3>
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+<fb:login-button scope="public_profile,email" data-size="medium" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="true" onlogin="checkLoginState();">
 </fb:login-button>
 
 <div id="status">
