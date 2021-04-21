@@ -33,7 +33,7 @@ export async function getMyfbAccInfo(instaUserId, accessToken) {
 }
 // getMyfbAccPage
 export async function getMyfbAccPage(instaUserId, accessToken) {
-  const url = `https://graph.facebook.com/v10.0/me/accounts?fields=name,id,access_token,engagement,likes,insights,instagram_business_account,followers_count{id}&access_token=${accessToken}`;
+  const url = `https://graph.facebook.com/v10.0/me/accounts?fields=name,id,access_token,engagement,likes,instagram_business_account,followers_count{id}&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
