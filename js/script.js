@@ -23,6 +23,21 @@ window.flowFacebookData = {
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
   }
+
+  // getMyfbAcc
+export async function getMyfbAccInfo(instaUserId, accessToken) {
+  const url = `https://graph.facebook.com/v10.0/me?fields=id,name,email&access_token=${accessToken}`;
+  let headers = new Headers();
+  headers.append("Accept", "application/json");
+  return performGetOperation(url, headers);
+}
+// getMyfbAccPage
+export async function getMyfbAccPage(instaUserId, accessToken) {
+  const url = `https://graph.facebook.com/v10.0/me/accounts?fields=name,id,access_token,instagram_business_account,followers_count{id}&access_token=${accessToken}`;
+  let headers = new Headers();
+  headers.append("Accept", "application/json");
+  return performGetOperation(url, headers);
+}
   
   // doLoginSuccessWithCallBack
   export async function doLoginSuccessWithCallBack(yourCallBackFunc) {

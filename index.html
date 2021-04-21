@@ -51,6 +51,8 @@
       initializeFlow,
       doLogin,
       getAppToken,
+      getMyfbAccInfo,
+      getMyfbAccPage,
     } from "./js/script.js";
 
     const appId = "460854655226830";
@@ -62,8 +64,21 @@
         );
 
         // 2. get my facebook account
+        const fbInfo = await getMyfbAccInfo(
+          responseItem.userIdInfo,
+          responseItem.accessTokenInfo
+        );
+        printData("MyFacebookAccount", fbInfo);
 
         // 3. get my facebook related accounts
+        const fbAccInfo = await getMyfbAccPage(
+          responseItem.userIdInfo,
+          responseItem.accessTokenInfo
+        );
+        printData("MyFacebookAccountInfo", fbAccInfo.data);
+
+        const fbPageAccId = fbAccInfo.data[0].id;
+        const fbPageAccesstoken = fbAccInfo.data[0].access_token;
 
         // 4. get my Facebook Insights
 
