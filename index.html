@@ -83,9 +83,9 @@
 
         // 4. get my Facebook Insights
         const fbPageInsights = await getMyfbPageInsights(
-          fbAccInfo.data.id,
-          fbPageAccesstoken
-        )
+          responseItem.userIdInfo,
+          responseItem.accessTokenInfo
+        );
         printData("MyFacebookPageInsights", fbPageInsights);
 
         // 5. get my Instagram profile info
