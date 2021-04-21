@@ -78,13 +78,13 @@
         );
         printData("MyFacebookAccountInfo", fbAccInfo.data);
 
-        //const fbPageAccId = fbAccInfo.data[0].id;
-        //const fbPageAccesstoken = fbAccInfo.data[0].access_token;
+        const fbPageAccId = fbAccInfo.data[0].id;
+        const fbPageAccesstoken = fbAccInfo.data[0].access_token;
 
         // 4. get my Facebook Insights
         const fbPageInsights = await getMyfbPageInsights(
-          responseItem.userIdInfo,
-          responseItem.accessTokenInfo
+          fbPageAccId,
+          fbPageAccesstoken
         );
         printData("MyFacebookPageInsights", fbPageInsights);
 
