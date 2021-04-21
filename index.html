@@ -2,8 +2,15 @@
 <head>
 <title>Facebook Login</title>
 <meta charset="UTF-8">
+<style>
+  .status {
+    color: white;
+  }
+</style>
 </head>
 <body>
+  <h2>Facebook Login</h2>
+  <h4>Test av facebook-login, innhenting av Facebook-siden og skriv ut Facebook og Instagram data.</h4>
 <script>
   function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
     console.log('statusChangeCallback');
@@ -46,8 +53,10 @@
 </script>
 
 <!-- The JS SDK Login Button -->
-<div class="fb-login-button" data-width="" data-size="medium" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="true" fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></div>
+<fb:login-button scope="public_profile,email" data-width="" data-size="medium" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="true" onlogin="checkLoginState();">
+</fb:login-button>
 
+<!-- Not logged in text-->
 <div id="status">
 </div>
 
