@@ -53,6 +53,7 @@
       getAppToken,
       getMyfbAccInfo,
       getMyfbAccPage,
+      getMyfbPageInsights,
     } from "./js/script.js";
 
     const appId = "460854655226830";
@@ -81,6 +82,11 @@
         const fbPageAccesstoken = fbAccInfo.data[0].access_token;
 
         // 4. get my Facebook Insights
+        const fbPageInsights = await getMyfbPageInsights(
+          fbAccInfo.data,
+          fbPageAccesstoken
+        )
+        printData("MyFacebookPageInsights", fbPageInsights);
 
         // 5. get my Instagram profile info
 
