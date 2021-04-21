@@ -23,84 +23,6 @@ window.flowFacebookData = {
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
   }
-
-// getMyInstagramAccMediaStats
-export async function getMyInstagramAccMediaStats(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/${instaUserId}/media?fields=shortcode,caption,comments_count,thumbnail_url,username,media_type,media_url,like_count,comments,is_comment_enabled&limit=10&access_token=${accessToken}`;
-    let headers = new Headers();
-    headers.append("Accept", "application/json");
-    return performGetOperation(url, headers);
-  }
-  // getMyInstagramAccInsight
-  export async function getMyInstagramAccInsight(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=impressions,reach,like_count,profile_views&period=week&access_token=${accessToken}`;
-    let headers = new Headers();
-    headers.append("Accept", "application/json");
-    return performGetOperation(url, headers);
-  }
-  // getMyInstagramAccInfo
-  export async function getMyInstagramAccInfo(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=biography,followers_count,follows_count,ig_id,name,profile_picture_url&access_token=${accessToken}`;
-    let headers = new Headers();
-    headers.append("Accept", "application/json");
-    return performGetOperation(url, headers);
-  }
-  
-  // getMyInstagramAccInfo
-  export async function getMyInstagramNormalAccInfo(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=follow_count,has_profile_picture,media_count,username,profile_pic&access_token=${accessToken}`;
-    let headers = new Headers();
-    headers.append("Accept", "application/json");
-    return performGetOperation(url, headers);
-  }
-  
-  // getMyFbInstaBusinessAcc
-  export async function getMyFbInstaBusinessAcc(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=instagram_business_account&access_token=${accessToken}`;
-    let headers = new Headers();
-    headers.append("Accept", "application/json");
-    return performGetOperation(url, headers);
-  }
-  
-  // getMyfbAcc
-  export async function getMyfbAccInfo(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/me?fields=id,name,email&access_token=${accessToken}`;
-    let headers = new Headers();
-    headers.append("Accept", "application/json");
-    return performGetOperation(url, headers);
-  }
-  // getMyfbAcc
-  export async function getMyfbAccPage(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/me/accounts?fields=name,id,access_token,instagram_business_account{id}&access_token=${accessToken}`;
-    let headers = new Headers();
-    headers.append("Accept", "application/json");
-    return performGetOperation(url, headers);
-  }
-  
-  // getMyInsight
-  export async function getMyInsight(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=business_discovery.username(bluebottle){followers_count,media_count}&access_token=${accessToken}`;
-    let headers = new Headers();
-    headers.append("Accept", "application/json");
-    return performGetOperation(url, headers);
-  }
-  
-  // getInstgramProfile
-  export async function getInstgramProfile(instagramProfileId) {
-    FB.api(`${instagramProfileId}`, function (responseData) {
-      if (responseData && !responseData.error) {
-        return responseData;
-      }
-    });
-  }
-  // getMyInfo
-  export async function getMyInfo(instagramProfileId) {
-    FB.api("/me", function (responseData) {
-      console.log("getMyInfo", responseData);
-      const instaUserId = responseData.id;
-      return responseData;
-    });
-  }
   
   // doLoginSuccessWithCallBack
   export async function doLoginSuccessWithCallBack(yourCallBackFunc) {
@@ -139,7 +61,7 @@ export async function getMyInstagramAccMediaStats(instaUserId, accessToken) {
         }
         return doLoginFail(response);
       },
-      { scope: "email,public_profile,pages_show_list,instagram_basic,pages_read_engagement,read_insights,ads_read,instagram_manage_insights,pages_manage_engagement" }
+      { scope: "email,public_profile,pages_read_engagement,pages_manage_engagement,pages_read_user_content,read_insights,instagram_manage_insights,instagram_basic,ads_read" }
     );
   }
   export function initializeFlow() {
