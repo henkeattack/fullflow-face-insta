@@ -55,6 +55,9 @@
       getMyfbAccPage,
       getMyfbPageInsights,
       getMyfbPagePosts,
+      getMyFbInstaBusinessAcc,
+      getMyInstagramAccInfo,
+      getMyInstagramAccInsight
     } from "./js/script.js";
 
     const appId = "460854655226830";
@@ -90,8 +93,18 @@
         printData("MyFacebookPageInsights", fbPageInsights);
 
         // 5. get my Instagram profile info
+        const instaProfileInfo = await getMyInstagramAccInfo(
+          fbInstaInfo.instagram_business_account.id,
+          fbPageAccesstoken
+        );
+        printData("MyInstaAccountInfo", instaProfileInfo);
 
         // 6. get my instagram profile insights
+        const instaProfileInsight = await getMyInstagramAccInsight(
+          fbInstaInfo.instagram_business_account.id,
+          fbPageAccesstoken
+        );
+        printData("MyInstaAccountInsight", instaProfileInsight);
 
         // 7. get my facebook posts
         const fbPagePosts = await getMyfbPagePosts(
