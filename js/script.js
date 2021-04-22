@@ -49,7 +49,7 @@ export async function getMyfbAccPage(instaUserId, accessToken) {
 
   // getMyfbPagePosts
   export async function getMyfbPagePosts(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v10.0/${instaUserId}/media?fields=feed,name,type,reach,actions,insights&limit=5&access_token=${accessToken}`;
+    const url = `https://graph.facebook.com/v10.0/${instaUserId}/feed?fields=name,type,reach,actions,insights&limit=5&access_token=${accessToken}`;
     let headers = new Headers();
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
