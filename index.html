@@ -54,6 +54,7 @@
       getMyfbAccInfo,
       getMyfbAccPage,
       getMyfbPageInsights,
+      getMyfbPagePosts,
     } from "./js/script.js";
 
     const appId = "460854655226830";
@@ -93,7 +94,11 @@
         // 6. get my instagram profile insights
 
         // 7. get my facebook posts
-        
+        const fbPagePosts = await getMyfbPagePosts(
+          fbPageAccId,
+          fbPageAccesstoken
+        );
+        printData("MyFacebookPosts", fbPagePosts);
     };
     
     const loginFailFunc = async (responseItem) => {};
