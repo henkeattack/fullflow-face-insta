@@ -37,7 +37,6 @@
 <h3 class="">Step 7: Get my Facebook Posts</h3>
 <pre class="odd" id="MyFacebookPosts"></pre>
 <h3 class="">Step 8: Get specific data</h3>
-    <p>Fetching your page info: </p>
     <pre class="odd" id="TestData"></pre>
 
 <script type="module">
@@ -86,6 +85,7 @@
         );
         printData("MyFacebookAccountInfo", fbAccInfo.data);
         console.log("Henter data: " + fbAccInfo.data[0].name);
+        console.log("Antall Følgere: " + fbAccInfo.data[0].followers_count);
         
         // Denne FUNKER!!!
         document.getElementById("TestData").innerHTML = "Your page info: " + fbAccInfo.data[0].name;
@@ -98,8 +98,8 @@
           fbPageAccId,
           fbPageAccesstoken
         );
-        console.log("Henter Page Name: " + fbPageAccId.name);
         printData("MyFacebookPageInsights", fbPageInsights.data);
+        document.getElementById("TestData").innerHTML = "Your page stats: " + fbPageInsights.data[0].page_views_total;
 
         // 5. get my Instagram profile info
         const instaProfileInfo = await getMyInstagramAccInfo(
