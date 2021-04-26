@@ -86,13 +86,13 @@
 
         const fbPageAccId = fbAccInfo.data[0].id;
         const fbPageAccesstoken = fbAccInfo.data[0].access_token;
-        console.log("Henter Page Name: " + fbPageAcc.name);
 
         // 4. get my Facebook Insights
         const fbPageInsights = await getMyfbPageInsights(
           fbPageAccId,
           fbPageAccesstoken
         );
+        console.log("Henter Page Name: " + fbPageAccId.name);
         printData("MyFacebookPageInsights", fbPageInsights.data);
 
         // 5. get my Instagram profile info
