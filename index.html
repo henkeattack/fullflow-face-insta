@@ -36,6 +36,9 @@
 <pre class="even" id="MyInstaAccountInsight"></pre>
 <h3 class="">Step 7: Get my Facebook Posts</h3>
 <pre class="odd" id="MyFacebookPosts"></pre>
+<h3 class="">Step 8: Get specific data</h3>
+    <p>Fetching your page info: </p>
+    <pre class="odd" id="TestData"></pre>
 
 <script type="module">
   //just print json into dom nicely
@@ -82,7 +85,9 @@
           responseItem.accessTokenInfo
         );
         printData("MyFacebookAccountInfo", fbAccInfo.data);
-        printData("Henter data: " + fbAccInfo.name);
+        console.log("Henter data: " + fbAccInfo.name);
+        console.log("TestData" + fbAccInfo.name);
+
 
         const fbPageAccId = fbAccInfo.data[0].id;
         const fbPageAccesstoken = fbAccInfo.data[0].access_token;
