@@ -99,7 +99,7 @@
           fbPageAccesstoken
         );
         printData("MyFacebookPageInsights", fbPageInsights.data);
-        document.getElementById("TestData").innerHTML = "Your page stats: " + fbPageInsights.data[0].page_views_total;
+        console.log("Your page stats: " + fbPageInsights.data[0].page_views_total);
 
         // 5. get my Instagram profile info
         const instaProfileInfo = await getMyInstagramAccInfo(
