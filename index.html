@@ -86,7 +86,7 @@
         );
         printData("MyFacebookAccountInfo", fbAccInfo.data);
         console.log("Henter data: " + fbAccInfo.name);
-        document.getElementById("TestData").innerHTML = "Your page info: " + fbAccInfo.name;
+        document.getElementById("TestData").innerHTML = "Your page info: " + fbAccInfo.data[0].name;
 
         const fbPageAccId = fbAccInfo.data[0].id;
         const fbPageAccesstoken = fbAccInfo.data[0].access_token;
