@@ -82,7 +82,7 @@
           responseItem.accessTokenInfo
         );
         printData("MyFacebookAccountInfo", fbAccInfo.data);
-        console.log("Henter data: " + fbAccInfo.data.name);
+        console.log("Henter data: " + fbAccInfo.name);
 
         const fbPageAccId = fbAccInfo.data.id;
         const fbPageAccName = fbAccInfo.data.name;
@@ -93,7 +93,7 @@
           responseItem.userIdInfo,
           responseItem.accessTokenInfo
         );
-        printData("MyFacebookPageInsights", fbPageInsights);
+        printData("MyFacebookPageInsights", fbPageInsights.data);
 
         // 5. get my Instagram profile info
         const instaProfileInfo = await getMyInstagramAccInfo(
