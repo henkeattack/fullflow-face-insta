@@ -38,6 +38,14 @@ export async function getMyfbAccPage(instaUserId, accessToken) {
   return performGetOperation(url, headers);
 }
 
+// getMyInsight
+export async function getMyInsight(instaUserId, accessToken) {
+  const url = `https://graph.facebook.com/v10.0/${instaUserId}?fields=business_discovery.username(bluebottle){followers_count,media_count}&access_token=${accessToken}`;
+  let headers = new Headers();
+  headers.append("Accept", "application/json");
+  return performGetOperation(url, headers);
+}
+
   // getMyfbPageInsights
   export async function getMyfbPageInsights(instaUserId, accessToken) {
     const url = `https://graph.facebook.com/v10.0/${instaUserId}/insights?metric=page_views_total,page_engaged_users,page_actions_post_reactions_like_total&period=week&access_token=${accessToken}`;
