@@ -81,9 +81,10 @@
           responseItem.accessTokenInfo
         );
         printData("MyFacebookAccountInfo", fbAccInfo.data);
+        console.log("Henter data: " + fbAccInfo.data.name);
 
-        const fbPageAccId = fbAccInfo.data[0].id;
-        const fbPageAccName = fbAccInfo.name;
+        const fbPageAccId = fbAccInfo.data.id;
+        const fbPageAccName = fbAccInfo.data.name;
         const fbPageAccesstoken = fbAccInfo.data[0].access_token;
 
         // 4. get my Facebook Insights
