@@ -20,7 +20,7 @@
   <h2>Facebook Login</h2>
   <h4>Test av facebook-login, innhenting av Facebook-siden og skriv ut Facebook og Instagram data.</h4>
   <h3>Step 1: Facebook-Login</h3>
-  <fb:login-button scopes="email,public_profile,pages_show_list, pages_read_engagement,pages_manage_engagement,pages_read_user_content,read_insights"
+  <fb:login-button scopes="email,public_profile,pages_show_list, pages_read_engagement,pages_manage_engagement,pages_read_user_content,read_insights,instagram_manage_insights,instagram_basic,ads_read"
   onlogin="handlefbLogin();">
 </fb:login-button>
 
@@ -84,10 +84,13 @@
         printData("MyFacebookAccountInfo", fbAccInfo.data);
         console.log("Henter data: " + fbAccInfo.name);
 
+        const fbPageAccId = fbAccInfo.data[0].id;
+        const fbPageAccesstoken = fbAccInfo.data[0].access_token;
+
         // 4. get my Facebook Insights
         const fbPageInsights = await getMyfbPageInsights(
-          responseItem.userIdInfo,
-          responseItem.accessTokenInfo
+          fbPageAccId,
+          fbPageAccesstoken
         );
         printData("MyFacebookPageInsights", fbPageInsights.data);
 
