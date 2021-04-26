@@ -25,14 +25,14 @@ window.flowFacebookData = {
   } 
   // getMyfbAcc
 export async function getMyfbAccInfo(instaUserId, accessToken) {
-  const url = `https://graph.facebook.com/v10.0/me?fields=id,name,email&access_token=${accessToken}`;
+  const url = `https://graph.facebook.com/v8.0/me?fields=id,name,email&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
 }
 // getMyfbAccPage
 export async function getMyfbAccPage(instaUserId, accessToken) {
-  const url = `https://graph.facebook.com/v10.0/me/accounts?fields=name,id,access_token,engagement,instagram_business_account,followers_count{id}&access_token=${accessToken}`;
+  const url = `https://graph.facebook.com/v8.0/me/accounts?fields=name,id,access_token,engagement,instagram_business_account,followers_count{id}&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
@@ -40,7 +40,7 @@ export async function getMyfbAccPage(instaUserId, accessToken) {
 
 // getMyInsight
 export async function getMyInsight(instaUserId, accessToken) {
-  const url = `https://graph.facebook.com/v10.0/${instaUserId}?fields=business_discovery.username(bluebottle){followers_count,media_count}&access_token=${accessToken}`;
+  const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=business_discovery.username(bluebottle){followers_count,media_count}&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
@@ -48,7 +48,7 @@ export async function getMyInsight(instaUserId, accessToken) {
 
   // getMyfbPageInsights
   export async function getMyfbPageInsights(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v10.0/${instaUserId}/insights?metric=page_views_total,page_engaged_users,page_actions_post_reactions_like_total&period=week&access_token=${accessToken}`;
+    const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=page_views_total,page_engaged_users,page_actions_post_reactions_like_total&period=week&access_token=${accessToken}`;
     let headers = new Headers();
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
@@ -56,7 +56,7 @@ export async function getMyInsight(instaUserId, accessToken) {
 
   // getMyfbPagePosts
   export async function getMyfbPagePosts(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v10.0/${instaUserId}/posts?fields=attachments{title,media_type},actions,reach&limit=5&access_token=${accessToken}`;
+    const url = `https://graph.facebook.com/v8.0/${instaUserId}/posts?fields=attachments{title,media_type},actions,reach&limit=5&access_token=${accessToken}`;
     let headers = new Headers();
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
@@ -73,7 +73,7 @@ export async function getInstgramProfile(instagramProfileId) {
 
 // getMyFbInstaBusinessAcc
 export async function getMyFbInstaBusinessAcc(instaUserId, accessToken) {
-  const url = `https://graph.facebook.com/v10.0/${instaUserId}?fields=instagram_business_account&access_token=${accessToken}`;
+  const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=instagram_business_account&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
@@ -81,7 +81,7 @@ export async function getMyFbInstaBusinessAcc(instaUserId, accessToken) {
 
 // getMyInstagramAccInfo
 export async function getMyInstagramAccInfo(instaUserId, accessToken) {
-  const url = `https://graph.facebook.com/v10.0/${instaUserId}?fields=biography,followers_count,follows_count,ig_id,name,profile_picture_url&access_token=${accessToken}`;
+  const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=biography,followers_count,follows_count,ig_id,name,profile_picture_url&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
@@ -89,7 +89,7 @@ export async function getMyInstagramAccInfo(instaUserId, accessToken) {
 
 // getMyInstagramAccInsight
 export async function getMyInstagramAccInsight(instaUserId, accessToken) {
-  const url = `https://graph.facebook.com/v10.0/${instaUserId}/insights?metric=impressions,reach,profile_views&period=week&access_token=${accessToken}`;
+  const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=impressions,reach,profile_views&period=week&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
@@ -154,7 +154,7 @@ export async function getMyInstagramAccInsight(instaUserId, accessToken) {
         appId: window.flowFacebookData.appId,
         cookie: true,
         xfbml: true,
-        version: "v10.0",
+        version: "v8.0",
       });
   
       FB.AppEvents.logPageView();
