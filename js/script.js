@@ -22,8 +22,7 @@ window.flowFacebookData = {
     let headers = new Headers();
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
-  }
-
+  } 
   // getMyfbAcc
 export async function getMyfbAccInfo(instaUserId, accessToken) {
   const url = `https://graph.facebook.com/v10.0/me?fields=id,name,email&access_token=${accessToken}`;
